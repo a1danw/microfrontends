@@ -27,10 +27,15 @@ IAM (Generate access key)
 - Attach existing policies directly - AmazonS3FullAccess, CloudFrontFullAccess
 - Security credentials/Create Access key/CLI
 - Add to github settings/secrets/new secret/
-- Create 3 keys in github secrets:
+- Create 4 keys in github secrets:
     - AWS_S3_BUCKET_NAME - (inital name created) mfe-github-action
     - AWS_ACCESS_KEY_ID - 
     - AWS_SECRET_ACCESS_KEY - 
+    - AWS_DISTRIBUTION_ID (from cloudfront distributions)
+
+CLOUDFRONT INVALIDATION
+- Cloudfront doesnt automatically use the latest files created by s3 bucket by default. Doesnt serve the latest edition
+- Cloudfront/Invalidations/Create invalidation - /container/latest/index.html
 
 S3 Bucket Creation and Configuration
 Go to AWS Management Console and use the search bar to find S3

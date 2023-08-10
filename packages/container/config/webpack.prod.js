@@ -12,7 +12,7 @@ const prodConfig = {
     // ensures whenever we build some files for production, all the different files that are build are going to use this as a template on how to name them
     // done primarily for caching issues
     filename: "[name].[contenthash].js",
-    publicPath: "/container/latest/",
+    publicPath: "/container/latest/", // refers to file built by webpack - whwenever the html plugin tries to refer to file creeated
   },
   // production settings - urls point to production domain as opposed to localhost
   plugins: [
