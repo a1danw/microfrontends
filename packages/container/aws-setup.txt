@@ -1,0 +1,33 @@
+Creating a bucket
+- Navigate to S3/Create Bucket
+- Bucket name/Region can be left
+- Create Bucket
+- Properties/Static web hosting - Enable/Host a static website/index document - index.html/Save Changes
+- Permissions/Edit/Untick block app public access/Save changes
+
+Authoring a bucket(allow services to talk to each for cloudfront)
+- Bucket Policy/Edit/Policy generator/Type of policy - S3 Bucket policy/Effect - Allow/Principal - */Actions - get object/ARN - Copy bucket arn from other tab and add /* to the end/Generate policy and paste in s3 policy editor
+
+Cloudfront
+- Create distribution
+- Web distribution
+- Origin name - select created s3 bucket
+- View protocol policy - Redirect http to https
+- SSL Certificate - default cloudfront
+- Create distribution
+- Edit/Default root object - /container/latest/index.html
+- Error pages/Create custom error repsonse/403 forbidden/customize error - yes/response page path - /container/latest/index.html/http response code - 200 ok
+
+- container.yml contains environment variables for github
+- setup encrypted secrets whenever we try to reference one of these encrypted secrets, whenever we run the github workflow, the section will be removed and replaced with the value setup in the repo
+
+IAM (Generate access key)
+- Users section
+- Add user/Username - mfe-github-action
+- Attach existing policies directly - AmazonS3FullAccess, CloudFrontFullAccess
+- Security credentials/Create Access key/CLI
+- Add to github settings/secrets/new secret/
+- Create 3 keys in github secrets:
+    - AWS_S3_BUCKET_NAME - (inital name created) mfe-github-action
+    - AWS_ACCESS_KEY_ID - 
+    - AWS_SECRET_ACCESS_KEY - 
